@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="styles.css">
+<title>Purchase Receipt</title>
+</head>
+<body>
+
+<form onsubmit="divChange(); return false">
+
+<div class="container">
+
+
+<br><label for="firstName">First Name</label><input id="firstName" pattern="[A-Z a-z]*" required><br><br>
+<label for="lastName">Last Name</label><input id="lastName" pattern="[A-Z a-z]*" required><br><br>
+<label for="phone">Phone</label><input id="phone" pattern="^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$" 
+required><br><br>
+<label for="city">City</label><input id="city" pattern="[A-Z a-z]*" required><br><br>
+
+
+<label>State</label>
+<select required>
+<option id="arizona">Arizona</option>
+<option id="cali">California</option>
+<option id="texas">Texas</option>
+</select>
+<br><br>
+<label for="zip">Zip</label><input id="zip" pattern="[0-9]{5}" required><br><br>
+
+
+<fieldset>
+<legend>Size</legend>
+
+
+<input type="radio" name="size" value="2.00" required>Small $2.00<br>
+<input type="radio" name="size" value="2.65" required>Medium $2.65<br>
+<input type="radio" name="size" value="2.99" required>Large $2.99
+</fieldset>
+
+
+<br>
+
+<label for="quantity">Quantity (1..5)</label>
+<input type="number" id="quantity" name="quantity" min="1" max="5" required>
+<br><br>
+<div class="center">
+<input type="submit" value="Continue" class="buttonBorder">
+</div>
+
+</div>
+
+<div id="toChange"></div>
+
+
+</form>
+
+<script>
+var toChange = document.getElementById("toChange");
+var quant = document.getElementById("quantity");
+var fname = document.getElementById("firstName");
+var lname = document.getElementById("lastName");
+var city = document.getElementById("city");
+var arizona = document.getElementById("arizona");
+var cali = document.getElementById("cali");
+var texas = document.getElementById("texas");
+var zip = document.getElementById("zip");
+var date = Date().split(" ");
+var size = "";
+var state = "";
+var total = 0;
+
+function divChange() {
+	date = date[2] + "-" + date[1] + "-" + date[3];
+	var element = document.getElementsByName('size');
+	for (i = 0; i < element.length; i++) { 
+        if (element[i].checked) {
+        	if (element[i].value == "2.00") {
+        		size = "small ";
+        	}
+        	if (element[i].value == "2.65") {
+        		size = "medium ";
+        	}
+        	if (element[i].value == "2.99") {
+        		size = "large ";
+        	}
+        	if (arizona.selected){
+    			state = "AZ";
+    		}
+    		if (cali.selected){
+    			state = "CA";
+    		}
+    		if (texas.selected) {
+    			state = "TX";
+    		}
+        	total = Number(quant.value) * Number(element[i].value);
+        	break;
+        }
+     
+    }
+	toChange.classList.add("receipt");
+	toChange.innerHTML = "<h3>Receipt</h3>" + "Purchase Date: " + date + "<br>" + 
+	"Purchased " + quant.value + " " + size + "item(s)<br>" + "Total Cost $" + total.toFixed(2) + 
+	"<br>" + "<fieldset><legend>Ship to</legend>" + fname.value + " " + lname.value + "<br>" + 
+	city.value + ", " + state + "<br>" + zip.value + "</fieldset><br><br><br><br><br><br><br><br>";
+}
+
+
+</script>
+
+</body>
+</html>
