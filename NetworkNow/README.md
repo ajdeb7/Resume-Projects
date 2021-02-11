@@ -1,3 +1,5 @@
+Hack Arizona 2020 - Challenge: “Best use of AI to improve the recruiting process for candidates and employers."
+
 This program represents a prototype for a potential application that connects modern professionals in real time in the same general vicinity. 
 When is the last time you connected with your 500 LinkedIn connections? This application intends to create spontaneous, face-to-face connections 
 for like-minded people. For the purpose of this prototype/demo, we have created a txt file with sample data about example users. We have created a
