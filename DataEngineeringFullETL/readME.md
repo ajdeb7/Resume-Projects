@@ -1,1 +1,1 @@
-
+This project takes a data set of every traffic collision report recorded by the San Diego Police Department from 2015 to present. I transform the data into workable usable data that I break down into normalized data tables. From there, those tables filled with normalized data are pushed to an Amazon Web Services Database I created.
