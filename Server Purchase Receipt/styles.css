@@ -1,0 +1,54 @@
+@CHARSET "UTF-8";
+
+.header {
+	background-color: blue;
+	color: white;
+	padding: 5px;
+	font-size: 20px;
+}
+
+.labels {
+	float: left;
+	width: 80px;
+	height: 30px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.9em;
+	text-align: right;
+}
+
+.fields {
+	float: right;
+	width: 160px;
+	height: 30px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.9em;
+}
+
+.fieldSet {
+	width: 240px;
+	height: 90px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.9em;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.section {
+	width: 240px;
+	height: 400px;
+	padding: 10px;
+	font-size: 0.9em;
+	border: outset gray 6pt;
+	background-color: lightblue;
+	font-family: arial, sans serif;
+}
+
+.receipt {
+	background: pink;
+	height: 220px;
+	width: 400px;
+	padding: 20px;
+	margin: 10px;
+	border: outset red 6pt;
+	font-family: arial, sans serif;
+	font-size: 0.9em;
+}

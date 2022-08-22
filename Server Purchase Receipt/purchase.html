@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<Title>Purchase Form</Title>
+<meta charset="UTF-8">
+<link href="styles.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+
+<h2>Widget Purchase</h2>
+
+<div class="section">
+<form action="receipt.php" method="post">
+
+<div class="labels">First Name&nbsp;</div>
+<div class="fields">
+	<input type="text" id="firstName" name="firstName"
+		pattern="[A-Z a-z]*" required
+		autocomplete='given-name'
+	>
+</div>
+
+<div class="labels">Last Name&nbsp;</div>
+<div class="fields">
+	<input type="text" id="lastName" name="lastName"
+		pattern="[A-Z a-z]*" required
+		autocomplete='family-name'>
+</div>
+
+<div class="labels">Phone&nbsp;</div>
+<div class="fields">
+	<input type="text" id="phoneNum" name="phoneNum"
+	autocomplete='tel' autocomplete='tel-national' required
+	pattern = "^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$">
+</div>
+
+<div class="labels">City&nbsp;</div>
+<div class="fields">
+	<input type="text" id="city" name="city" pattern="([A-Z a-z]"
+		required autocomplete='address-level2'>
+</div>
+
+<div class="labels">State&nbsp;</div>
+<div class="fields">
+	<select id="state" name="state" autocomplete='address-level1' required>
+		<option value="" selected="selected">-Select-</option>
+				<option value="AZ">Arizona</option>
+				<option value="CA">California</option>
+				<option value="NM">New Mexico</option>
+				<option value="UT">Utah</option>
+	</select>
+</div>
+
+<div class="labels">Zip&nbsp;</div>
+<div class="fields">
+	<input type="text" id="zip" name="zip" pattern="[0-9]{5}"
+	autocomplete='postal-code'
+	required>
+</div>
+&nbsp;
+
+<div class="fieldSet">
+<fieldset>
+<legend>Size</legend>
+<input id="small" type="radio" name="size" value="small 2.00" required> Small $2.00 <br>
+<input id="medium" type="radio" name="size" value="medium 2.65" required> Medium $2.65 <br>
+<input id="large" type="radio" name="size" value="large 2.99" required>Large $2.99 <br>
+</fieldset>
+</div>
+
+<div class="labels">
+  <input id="quantity" type="number" name="quantity" min="1" max="5" required>
+</div>
+
+<div class="fields">&nbsp;Quantity (1..5)&nbsp;</div>
+  <p>&nbsp;</p>
+  <div class="fields">
+	<input type="submit" value="Continue">
+  </div>
+</form>
+
+</div>
+
+</body>
+</html>
