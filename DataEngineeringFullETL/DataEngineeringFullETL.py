@@ -14,7 +14,7 @@ import pandas as pd
 import numpy as np
 
 ## Read in csv
-san_diego_accidents = pd.read_csv("https://docs.google.com/spreadsheets/d/1t3TBJ_fDOo48cdGrcWA6DW515dwi4qqiw8Y5zYNuVDQ/gviz/tq?tqx=out:csv")
+san_diego_accidents = pd.read_csv("https://seshat.datasd.org/pd/pd_collisions_datasd_v1.csv")
 
 ## Check to verify
 print(san_diego_accidents)
