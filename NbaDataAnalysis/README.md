@@ -1,0 +1,1 @@
+This project takes a dataset of all NBA players with their height, blocks per game, age, and experience. Analysis is executed to correlate height and blocks per game. More analysis is done to determine age demographic of the NBA and experience level around the league. Data analysis is consolidated to NBA_Data_analysis.pdf
