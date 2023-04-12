@@ -6,7 +6,7 @@
 ## Data import
 
 ## This is a dataset of every traffic collision report recorded by the San Diego Police Department from 2015 to present.
-## https://data.sandiego.gov/datasets/police-collisions/
+## https://data.sandiego.gov/datasets/police-collisions-details/
 """
 
 ## Import Statements
@@ -14,7 +14,7 @@ import pandas as pd
 import numpy as np
 
 ## Read in csv
-san_diego_accidents = pd.read_csv("https://seshat.datasd.org/pd/pd_collisions_datasd_v1.csv")
+san_diego_accidents = pd.read_csv("https://seshat.datasd.org/pd/pd_collisions_details_datasd.csv")
 
 ## Check to verify
 print(san_diego_accidents)
