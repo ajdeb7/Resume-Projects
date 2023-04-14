@@ -165,9 +165,9 @@ import psycopg2
 def get_conn_cur():
   conn = psycopg2.connect(
     host="ista322-final-project-db.cqrugokm56zq.us-east-2.rds.amazonaws.com",
-    database="ista322_final_project_db",
-    user="andrewdeb7",
-    password="Nike_Elite7",
+    database="",
+    user="",
+    password="",
     port='5432')
   
   cur = conn.cursor()
