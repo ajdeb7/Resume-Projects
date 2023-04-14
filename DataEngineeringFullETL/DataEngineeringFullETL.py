@@ -164,10 +164,10 @@ import psycopg2
 ## Function to connect to my created AWS db
 def get_conn_cur():
   conn = psycopg2.connect(
-    host="ista322-final-project-db.cqrugokm56zq.us-east-2.rds.amazonaws.com",
-    database="",
-    user="",
-    password="",
+    host="sdcollisions.c4ofdx2sp3ld.us-east-2.rds.amazonaws.com",
+    database="sdcollisions",
+    user="sdcollisionsuser",
+    password="asdfjkl;",
     port='5432')
   
   cur = conn.cursor()
