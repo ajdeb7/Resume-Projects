@@ -11,7 +11,7 @@
 
 ## Import Statements
 import pandas as pd
-import numpy as np
+import numpy as nd
 
 ## Read in csv
 san_diego_accidents = pd.read_csv("https://seshat.datasd.org/pd/pd_collisions_details_datasd.csv")
@@ -251,14 +251,14 @@ conn, cur = get_conn_cur()
 ## Create table in aws database
 ## Table already created
 ## Only needs to run before table is created
-'''
+
 sq = """CREATE TABLE violations (
           violation_id INTEGER PRIMARY KEY,
           number_of_accidents INTEGER NOT NULL, 
           total_killed INTEGER NOT NULL,
           total_injured INTEGER NOT NULL
           );"""
-'''
+
 
 ## Execute query above
 ##cur.execute(sq)
