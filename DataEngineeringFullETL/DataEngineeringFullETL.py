@@ -246,7 +246,7 @@ def sql_head(table_name):
 conn, cur = get_conn_cur()
 
 ## Check connection
-## conn
+conn
 
 ## Create table in aws database
 ## Table already created
@@ -261,16 +261,16 @@ sq = """CREATE TABLE violations (
 
 
 ## Execute query above
-##cur.execute(sq)
+cur.execute(sq)
 
 ## Commit query
-##conn.commit()
+conn.commit()
 
 ## Check if table was added to database
-## get_table_names()
+get_table_names()
 
 # Use sql_head to check cases
-## sql_head(table_name='violations')
+sql_head(table_name='violations')
 
 ## Get column names and datatypes from newly created table
 conn, cur = get_conn_cur()
@@ -286,51 +286,51 @@ conn.close()
 data_tups = [tuple(x) for x in violations_df.to_numpy()]
 
 ## Check values
-## data_tups[2]
+data_tups[2]
 
 ## Check query
 iq = """INSERT INTO violations(violation_id,number_of_accidents,total_killed,total_injured) VALUES(%s, %s, %s, %s);"""
-## iq
+iq
 
 ## Check query
-## iq % data_tups[2]
+iq % data_tups[2]
 
 ## Upload to table in database
 ## Uploaded already
-'''
+
 conn, cur = get_conn_cur()
 cur.executemany(iq, data_tups)
 conn.commit()
 conn.close()
-'''
+
 
 ## Connect to db
 conn, cur = get_conn_cur()
 
 ## Check connection
-## conn
+conn
 
 ## Create second table in aws database
-'''
+
 tq = """CREATE TABLE violation_descriptions (
           violation_section varchar(225) NOT NULL,
           violation_type varchar(225) NOT NULL, 
           charge_description varchar(225) NOT NULL,
           violation_id INTEGER NOT NULL
           );"""
-'''
+
 
 ## Execute query above
-## cur.execute(tq)
+cur.execute(tq)
 
 ## Commit query
-## conn.commit()
+conn.commit()
 
 ## Check if table was added to database
-## get_table_names()
+get_table_names()
 
 # Use sql_head to check cases
-## sql_head(table_name='violation_descriptions')
+sql_head(table_name='violation_descriptions')
 
 ## Get column names and datatypes from newly created table
 conn, cur = get_conn_cur()
@@ -346,21 +346,21 @@ conn.close()
 data_tups = [tuple(x) for x in violation_desc_df.to_numpy()]
 
 ## Check values
-##data_tups[2]
+data_tups[2]
 
 ## Check query
 iq = """INSERT INTO violation_descriptions(violation_section,violation_type,charge_description,violation_id) VALUES(%s, %s, %s, %s);"""
 
 ## Check query
-##iq % data_tups[2]
+iq % data_tups[2]
 
-'''
+
 ## Upload to table in database
 conn, cur = get_conn_cur()
 cur.executemany(iq, data_tups)
 conn.commit()
 conn.close()
-'''
+
 """## Check
  
 Perform some SQL check to validate that your data is in the database.  Do a basic select and filter, or a simple join, for example. 
