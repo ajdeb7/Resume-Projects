@@ -17,7 +17,7 @@ import numpy as nd
 san_diego_accidents = pd.read_csv("https://seshat.datasd.org/pd/pd_collisions_details_datasd.csv")
 
 ## Check to verify
-print(san_diego_accidents)
+## print(san_diego_accidents)
 
 """## Data exploration
 
@@ -58,10 +58,11 @@ san_diego_accidents_by_charge = san_diego_accidents.groupby(san_diego_accidents[
 ## Change column names
 san_diego_accidents_by_charge.columns = ['charge_description', 'accident_count', 'total_killed']
 
+'''
 print('\n')
 print("Total killed in accidents recorded = " + str(san_diego_accidents_by_charge['total_killed'].sum()))
 print('\n')
-
+'''
 
 ## Sorted to see which description had the most killed
 san_diego_accidents_by_charge.sort_values(by='accident_count', ascending=False).head()
@@ -140,9 +141,9 @@ violations_df = san_diego_accidents.groupby(san_diego_accidents['violation_id'],
 violations_df.columns = ['violation_id', 'number_of_accidents', 'total_killed', 'total_injured']
 
 ## Check df
-print(violations_df)
-print('\n')
-print('\n')
+# print(violations_df)
+# print('\n')
+# print('\n')
 
 ## Select columns from san_diego_accidents and drop duplicates
 violation_desc_df = san_diego_accidents[['violation_section', 'violation_type', 'charge_desc', 
@@ -151,9 +152,9 @@ violation_desc_df = san_diego_accidents[['violation_section', 'violation_type', 
 violation_desc_df.columns = ['violation_section', 'violation_type', 'charge_description', 'violation_id']
 
 ## Check df
-print(violation_desc_df)
-print('\n')
-print('\n')
+# print(violation_desc_df)
+# print('\n')
+# print('\n')
 
 """## Load to database
 
@@ -164,11 +165,11 @@ import psycopg2
 ## Function to connect to my created AWS db
 def get_conn_cur():
   conn = psycopg2.connect(
-    host="sdcollisions.c4ofdx2sp3ld.us-east-2.rds.amazonaws.com",
-    database="sdcollisions",
-    user="sdcollisionsuser",
-    password="asdfjkl;",
-    port='5432')
+    host="sd-collisions-database-1.c4ofdx2sp3ld.us-east-2.rds.amazonaws.com",
+    port="5432",
+    user="postgres",
+    password="12345678",
+    database="sdcollisionsdb")
   
   cur = conn.cursor()
   return(conn, cur)
@@ -246,7 +247,7 @@ def sql_head(table_name):
 conn, cur = get_conn_cur()
 
 ## Check connection
-conn
+# print(conn)
 
 ## Create table in aws database
 ## Table already created
@@ -261,54 +262,54 @@ sq = """CREATE TABLE violations (
 
 
 ## Execute query above
-cur.execute(sq)
+# cur.execute(sq)
 
 ## Commit query
-conn.commit()
+# conn.commit()
 
 ## Check if table was added to database
-get_table_names()
+# print(get_table_names())
 
 # Use sql_head to check cases
-sql_head(table_name='violations')
+print(sql_head(table_name='violations'))
 
 ## Get column names and datatypes from newly created table
-conn, cur = get_conn_cur()
-cur = conn.cursor()
+# conn, cur = get_conn_cur()
+# cur = conn.cursor()
 uq = """SELECT column_name, data_type
           FROM information_schema.columns
           WHERE table_name = 'violations';"""
-cur.execute(uq)
-## print(cur.fetchall())
-conn.close()
+# cur.execute(uq)
+# print(cur.fetchall())
+# conn.close()
 
 ## For loop to get everything in violations_df
 data_tups = [tuple(x) for x in violations_df.to_numpy()]
 
 ## Check values
-data_tups[2]
+# print(data_tups[2])
 
 ## Check query
 iq = """INSERT INTO violations(violation_id,number_of_accidents,total_killed,total_injured) VALUES(%s, %s, %s, %s);"""
-iq
+# print(iq)
 
 ## Check query
-iq % data_tups[2]
+# print(iq % data_tups[2])
 
 ## Upload to table in database
 ## Uploaded already
 
-conn, cur = get_conn_cur()
-cur.executemany(iq, data_tups)
-conn.commit()
-conn.close()
+# conn, cur = get_conn_cur()
+# cur.executemany(iq, data_tups)
+# conn.commit()
+# conn.close()
 
 
 ## Connect to db
 conn, cur = get_conn_cur()
 
 ## Check connection
-conn
+# print(conn)
 
 ## Create second table in aws database
 
@@ -321,20 +322,20 @@ tq = """CREATE TABLE violation_descriptions (
 
 
 ## Execute query above
-cur.execute(tq)
+# cur.execute(tq)
 
 ## Commit query
-conn.commit()
+# conn.commit()
 
 ## Check if table was added to database
-get_table_names()
+# print(get_table_names())
 
 # Use sql_head to check cases
-sql_head(table_name='violation_descriptions')
+# print(sql_head(table_name='violation_descriptions'))
 
 ## Get column names and datatypes from newly created table
 conn, cur = get_conn_cur()
-cur = conn.cursor()
+
 uq = """SELECT column_name, data_type
           FROM information_schema.columns
           WHERE table_name = 'violation_descriptions';"""
@@ -346,24 +347,22 @@ conn.close()
 data_tups = [tuple(x) for x in violation_desc_df.to_numpy()]
 
 ## Check values
-data_tups[2]
+# print(data_tups[2])
 
 ## Check query
 iq = """INSERT INTO violation_descriptions(violation_section,violation_type,charge_description,violation_id) VALUES(%s, %s, %s, %s);"""
 
 ## Check query
-iq % data_tups[2]
+# print(iq % data_tups[2])
 
 
 ## Upload to table in database
-conn, cur = get_conn_cur()
-cur.executemany(iq, data_tups)
-conn.commit()
-conn.close()
+# cur.executemany(iq, data_tups)
+# conn.commit()
 
 """## Check
  
-Perform some SQL check to validate that your data is in the database.  Do a basic select and filter, or a simple join, for example. 
+Perform some SQL checks to validate that data is in the database.
 """
 
 ## Test to see if data was uploaded correctly
